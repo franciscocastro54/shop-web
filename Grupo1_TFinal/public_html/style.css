@@ -1,0 +1,450 @@
+:root{
+    --text-color1: rgb(133, 89, 42); 
+    --text-color2: rgb(143, 82, 25);
+    --text-color3: rgb(255, 255, 255);
+    --text-color4: rgba(143, 82, 25, 0.316);
+    --text-color5: rgb(58, 32, 8);
+    --background-color1: rgba(255, 255, 255, 0.672);
+    --background-color2: rgba(47, 85, 121, 0.57); 
+    --shadow-color: #888888;
+    --shadow-color2: #888888ee;
+    --shadow-color3: rgba(94, 62, 19, 0.72);
+}
+
+html, body{
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-image: url(./img/fondoVerduras.jpg);
+    background-size: cover ;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.header{
+    width: 100%;
+    height: 2rem;
+}
+
+.footer{
+    width: 100%;
+    height: auto;
+    background: var(--shadow-color3);
+    display: grid;
+    grid-template-columns: 40% 40% 20%;
+
+}
+
+/*footer*/
+
+.footer ul{
+    list-style: none;
+}
+
+.footer a{
+    text-decoration: none;
+    color: var(--text-color3);
+}
+
+.titulo {
+    font-size: 1.2rem;
+    font-weight: 550;
+}
+
+.footer-section{
+    padding: 2rem 0 2rem 2rem;
+}
+
+.footer-section ul li{
+    margin-bottom: 0.5rem;
+}
+
+.footer-section ul li a:first-child{
+    margin-left: -2.5rem;
+}
+
+/* header*/
+
+.page-logo{
+    width: 5rem;
+    height: auto;
+}
+
+.page-logo-container{
+    margin: 0.5rem
+     1rem 1rem 1rem ;
+}
+
+.nav{
+    margin-top: -5rem;
+    height: 5rem;
+    width: 100%;
+    background: var(--background-color1);
+    display: grid;
+    grid-template-columns: 4rem auto;
+    position: fixed;
+}
+
+.nav ul{
+    display: flex;
+    list-style: none;
+ }
+
+.nav ul *{
+
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.nav ul .left-nav{
+    margin-left: 2rem;
+    color: var(--text-color1);
+}
+
+.nav ul .right-nav{
+    color: var(--text-color2);
+}
+
+.login{
+    width: max-content;
+    margin-left: calc(100% - 45rem);
+}
+
+.header-links{
+    background: var(--background-color1);
+    width: 100%;
+    height: 3rem;
+    border-top: var(--text-color1) solid 1px;
+    margin: 5rem 0 0 0;
+    padding: 1rem 0 0 0;
+}
+
+.header-links *{
+    font-weight: bold;
+    padding-left: 2rem;
+    font-size: 0.8rem;
+    text-decoration: none;
+    color: var(--text-color1);
+
+}
+
+.content {
+    padding: 10rem 0 10rem 9rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr) );
+    grid-auto-rows: 22rem;
+    grid-row-gap: 3rem;
+}
+
+.product{
+    display: grid;
+    grid-template-columns: 10rem;
+    grid-template-rows: 12rem 2rem 4rem 2rem;
+
+    border-radius: 3px;
+    width: 10rem;
+    height: auto;
+    padding: 1rem;
+    background: var(--background-color1);
+    transition: 0.4s ease-in;
+}
+
+.product:hover {
+    box-shadow: 5px 10px 8px var(--shadow-color3);
+    background: var(--text-color3);
+}
+
+.product .product-photo{
+    width: 8rem;
+    padding: 1rem;
+    height: auto;
+    border-radius: 4px;
+}
+
+.product .price{
+    font-weight: bold;
+    padding: 0.5rem 0 0 0.5rem;
+    color: var(--text-color3);
+    background-color: var(--text-color2);
+}
+
+.product .product-name{
+    text-decoration: none;
+    color: var(--text-color2);
+    font-weight: bold;
+    font-size: 1rem;
+    padding-top: 1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.photo-container {
+    text-decoration: none;
+    color: var(--text-color3);
+}
+
+.photo-container span{
+    font-size: 0.8rem;
+    font-weight: bold;
+    padding: 1rem 0.5rem 1rem 0.5rem;
+    position: absolute;
+    background: rgba(18, 167, 18, 0.857);
+    border-radius: 200%;
+    margin-left: 7rem;
+}
+
+.product .product-button, .submit-button{
+    color: var(--text-color1);
+    cursor: pointer;
+}
+
+.product .product-button:hover, .submit-button:hover{
+    border-radius: 4px;
+    background: var(--text-color2);
+    color: var(--text-color3);
+
+}
+
+.logo{
+    width: 0.9rem;
+    height: auto;
+    margin: 0  1.2rem -0.15rem 0 ; 
+}
+
+
+
+
+/* contactos*/
+
+.container-contact{
+    text-align: center;
+}
+
+.container-contact h2{
+    color: var(--text-color3);
+    background: var(--shadow-color3);
+    padding: 2rem 0 2rem 0;
+    margin-top: 2rem;
+
+}
+
+.info-container{
+    margin: 0 0 2rem calc(50% - 10rem) ;
+    width: 20rem;
+    background-color: var(--background-color1);
+    padding: 0 0 0.5rem 0;
+}
+
+.info-container p:first-child ,.form > p:first-child{
+    font-weight: bold;
+    color: var(--text-color3);
+    background-color: var(--text-color1);
+}
+
+
+.info-container a{
+    font-weight: bold;
+    color: var(--text-color1);
+    text-decoration: none;
+    display: block;
+    padding-bottom: 1rem;
+}
+
+.form{
+    background: var(--background-color1);
+    width: 40rem;
+    margin: 0 0 5rem calc( 50% - 20rem);
+}
+
+.form .submit-button{
+    font-weight: bold;
+    width: 6rem;
+    margin: 1rem;
+}
+
+.input-container{
+    color: var(--text-color1);
+}
+
+
+.signIn{
+    color: var(--text-color1);
+    display: block;
+    padding-bottom: 2rem;
+}
+
+textarea{
+    resize: none;
+}
+
+/* menu*/
+
+.nav ul li{
+    height: 2.4rem;
+    
+}
+
+
+
+
+.nav ul li a{
+    color: var(--text-color3);
+}
+
+.nav ul li ul{
+    display: flex;
+    flex-direction: column;
+}
+
+.nav ul li ul{
+    padding-left: 1rem;
+    position: absolute;
+}
+
+.nav ul li ul li{
+    left: 2rem;
+    height: 2rem;
+    font-size: 0.7rem;
+    width: 10rem;
+    position: relative;
+    padding: 1rem 0 0 1rem;
+    margin: 0 0 0 -1rem;
+    background: var(--shadow-color2);
+}
+
+.nav ul li ul li:hover{
+    background: var(--text-color1);
+}
+/* 
+.nav ul li ul li ul{
+    top: 0;
+    left: 9rem;
+    position: absolute;
+} */
+
+.sub-menu-2, .sub-menu-3{
+    top: 0;
+    left: 9rem;
+    position: absolute;
+}
+
+
+
+.nav  ul li ul{
+    display: none;
+}
+
+.nav ul li:hover > ul{
+    display: block;
+}
+
+
+
+/* sucursales*/
+
+.media-1 a {
+    text-decoration: none;
+    color: var(--background-color1);
+    opacity: 0;
+} 
+.media-1{
+
+    margin: 0 0 3rem calc(50% - 15rem);
+    width: 30rem;
+    height: 30rem;
+    opacity: 1;
+    background: center url(./img/market-3.jpg);
+    background-size: cover;
+    padding-top: 15rem;
+    transition: all 1s ease-in;
+}
+
+.media-1:hover{
+    background: linear-gradient(to bottom, var(--background-color1), rgba(133, 133, 134, 0.604)) , url(img/market-3.jpg) transparent;
+    background-size: cover ;
+    background-position: center;
+}
+
+
+.media-1:hover a{
+    font-weight: bold;
+    color: var(--text-color2);
+    font-size: 2rem;
+    opacity: 1;
+}
+
+
+
+.media-1 a {
+    text-decoration: none;
+    color: var(--background-color1);
+    opacity: 0;
+} 
+
+
+
+.media-2 a {
+    text-decoration: none;
+    color: var(--background-color1);
+    opacity: 0;
+} 
+
+.media-2{
+
+    margin: 0 0 3rem calc(50% - 15rem);
+    width: 30rem;
+    height: 30rem;
+    opacity: 1;
+    background: center url(./img/market-1.jpg);
+    background-size: cover;
+    padding-top: 15rem;
+    transition: all 1s ease-in;
+}
+
+.media-2:hover{
+    background: linear-gradient(to bottom, var(--background-color1), rgba(133, 133, 134, 0.604)) , url(img/market-1.jpg) transparent;
+    background-size: cover ;
+    background-position: center;
+}
+
+
+.media-2:hover a{
+    font-weight: bold;
+    color: var(--text-color2);
+    font-size: 2rem;
+    opacity: 1;
+}
+
+
+/* mapas */
+
+
+
+.mapa{
+    width: 40rem;
+    height: 30rem;
+    border: transparent solid 1px;
+}
+
+.map-container{
+    margin: 0 0 2rem calc(50% - 20rem) ;
+    width: 40rem;
+    background-color: var(--background-color1);
+    padding: 0 0 0.5rem 0;
+}
+
+.map-container p:first-child {
+    font-weight: bold;
+    color: var(--text-color3);
+    background-color: var(--text-color1);
+}
+
+
+.map-container a{
+    font-weight: bold;
+    color: var(--text-color1);
+    text-decoration: none;
+    display: block;
+    padding-bottom: 1rem;
+}
