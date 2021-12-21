@@ -67,13 +67,12 @@ html, body{
 /* header*/
 
 .page-logo{
-    width: 5rem;
+    width: 3.5rem;
     height: auto;
 }
 
 .page-logo-container{
-    margin: 0.5rem
-     1rem 1rem 1rem ;
+    margin: 0.5rem 1rem 1rem 1rem ;
 }
 
 .nav{
@@ -92,7 +91,7 @@ html, body{
  }
 
 .nav ul *{
-
+    padding-top: 1rem;
     text-decoration: none;
     font-weight: bold;
 }
@@ -156,9 +155,8 @@ html, body{
 }
 
 .product .product-photo{
-    width: 8rem;
-    padding: 1rem;
-    height: auto;
+    height: 100%;
+    width: 100%;
     border-radius: 4px;
 }
 
@@ -180,6 +178,9 @@ html, body{
 }
 
 .photo-container {
+    width: 10rem;
+    height: 10rem;
+    overflow: hidden;
     text-decoration: none;
     color: var(--text-color3);
 }
@@ -192,6 +193,7 @@ html, body{
     background: rgba(18, 167, 18, 0.857);
     border-radius: 200%;
     margin-left: 7rem;
+    z-index: 0;
 }
 
 .product .product-button, .submit-button{
@@ -286,7 +288,9 @@ textarea{
 }
 
 
-
+.nav{
+    z-index: 60;
+}
 
 .nav ul li a{
     color: var(--text-color3);
