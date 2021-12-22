@@ -80,10 +80,10 @@ const products = [
         "imgUrl": "./img/garlic.jpeg"
     },
     {
-        "productName": "greenPepper",
+        "productName": "Pimenton verde",
         "price": "500",
         "dcto": "0",
-        "imgUrl": "./img/Cabbage.jpg"
+        "imgUrl": "./img/greenPepper.jpg"
     },
     {
         "productName": "Champiñones (kg)",
