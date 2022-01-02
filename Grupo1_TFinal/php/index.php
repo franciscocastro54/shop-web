@@ -29,7 +29,7 @@
 		<?php endif ?>
 		<!-- informacion de usuario logeado -->
 		<div class="profile_info">
-			<img src="images/user_profile.png"  >
+			<img src="images/user.png"  >
 
 			<div>
 				<?php  if (isset($_SESSION['user'])) : ?>
