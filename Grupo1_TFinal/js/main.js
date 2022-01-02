@@ -180,7 +180,7 @@ $(document).ready(function () {
 
       <div class="info-container">
           <p>Sobre nosotros</p>
-          <p>Somos una verdureria online que siempre busca entregar un servicio rápido y de calidad a todos sus clientes.</p>
+          <p>Somos una verdureria online que siempre busca entregar un servicio rápido y de calidad a todos sus clientes, de manera paralela e independiente a las ferias locales, pues muchos de los vecinos tienen dificultades trasladandose o a si mismos o a los productos a sus hogares, y eso es algo de lo que somos conscientes y apuntamos a solucionar.</p>
       </div>
       
       <div class="info-container">
