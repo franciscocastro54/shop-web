@@ -7,7 +7,7 @@ const products = [
     price: "500",
     unidad: "unidad",
     dcto: "0",
-    imgUrl: "./img/Cabbage.jpg",
+    imgUrl: "https://i.ibb.co/27P4kyD/Green-cabbage-isolated-on-white-background-Green-cabbage-isolated-on-white-background.jpg",
   },
   {
     productId: "2",
@@ -15,7 +15,7 @@ const products = [
     price: "500",
     unidad: "unidad",
     dcto: "5",
-    imgUrl: "./img/broccoli.jpeg",
+    imgUrl: "https://i.ibb.co/znD0mSv/broccoli.jpg",
   },
   {
     productId: "3",
@@ -23,7 +23,7 @@ const products = [
     price: "100",
     unidad: "unidad",
     dcto: "0",
-    imgUrl: "./img/carrot.jpg",
+    imgUrl: "https://i.ibb.co/wwCvm1b/carrot.jpg",
   },
   {
     productId: "4",
@@ -31,7 +31,7 @@ const products = [
     price: "500",
     unidad: "unidad",
     dcto: "10",
-    imgUrl: "./img/cauliflower.jpg",
+    imgUrl: "https://i.ibb.co/QcmMwfC/cauliflower.jpg",
   },
   {
     productId: "5",
@@ -39,7 +39,7 @@ const products = [
     price: "2.000",
     unidad: "kg",
     dcto: "0",
-    imgUrl: "./img/corn.jpg",
+    imgUrl: "https://i.ibb.co/Bt7RJcQ/corn.jpg",
   },
   {
     productId: "6",
@@ -47,15 +47,15 @@ const products = [
     price: "2.500",
     unidad: "kg",
     dcto: "10",
-    imgUrl: "./img/eggplant.jpg",
+    imgUrl: "https://i.ibb.co/khrp5bH/eggplant.jpg",
   },
   {
     productId: "7",
     title: "Ajo",
-    price: "100",
+    price: "300",
     unidad: "unidad",
     dcto: "0",
-    imgUrl: "./img/garlic.jpeg",
+    imgUrl: "https://i.ibb.co/4F8gTLP/garlic.jpg",
   },
   {
     productId: "8",
@@ -63,15 +63,15 @@ const products = [
     price: "500",
     unidad: "unidad",
     dcto: "0",
-    imgUrl: "./img/greenPepper.jpg",
+    imgUrl: "https://i.ibb.co/qDdQCXR/green-Pepper.jpg",
   },
   {
     productId: "9",
     title: "Champiñones",
-    price: "1.500",
+    price: "9000",
     unidad: "kg",
     dcto: "25",
-    imgUrl: "./img/mushroom.png",
+    imgUrl: "https://i.ibb.co/R0WyTLH/mushroom.png",
   },
   {
     productId: "10",
@@ -79,7 +79,7 @@ const products = [
     price: "1.200",
     unidad: "kg",
     dcto: "0",
-    imgUrl: "./img/onion.jpg",
+    imgUrl: "https://i.ibb.co/NSLGwfh/onion.jpg",
   },
   {
     productId: "11",
@@ -87,7 +87,7 @@ const products = [
     price: "3.500",
     unidad: "kg",
     dcto: "15",
-    imgUrl: "./img/potato.jpg",
+    imgUrl: "https://i.ibb.co/7kdCpxf/potato.jpg",
   },
 ];
 
