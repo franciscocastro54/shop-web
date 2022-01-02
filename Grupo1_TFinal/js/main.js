@@ -11,7 +11,7 @@ const products = [
   },
   {
     productId: "2",
-    title: "Brócoli",
+    title: "Brocoli",
     price: "500",
     unidad: "unidad",
     dcto: "5",
@@ -67,7 +67,7 @@ const products = [
   },
   {
     productId: "9",
-    title: "Champiñones",
+    title: "Champinones",
     price: "9000",
     unidad: "kg",
     dcto: "25",
