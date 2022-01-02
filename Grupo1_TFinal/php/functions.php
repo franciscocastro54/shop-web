@@ -1,32 +1,32 @@
 <?php 
 session_start();
 
-// connect to database
+// conexion a db
 $db = mysqli_connect('localhost', 'root', '', 'multi_login');
 
-// variable declaration
+// declaracion de variable
 $username = "";
 $email    = "";
 $errors   = array(); 
 
-// call the register() function if register_btn is clicked
+// llamar la funcion register() si register_btn es clickeado
 if (isset($_POST['register_btn'])) {
 	register();
 }
 
-// REGISTER USER
+// REGISTRAR USUARIO
 function register(){
-	// call these variables with the global keyword to make them available in function
+	// llamar a estas variables con la palabra clave global para que estén disponibles en función
 	global $db, $errors, $username, $email;
 
-	// receive all input values from the form. Call the e() function
-    // defined below to escape form values
+	// recibe todos los valores de entrada del formulario. Llamar a la función e ()
+    // definida a continuación para escapar de los valores del formulario
 	$username    =  e($_POST['username']);
 	$email       =  e($_POST['email']);
 	$password_1  =  e($_POST['password_1']);
 	$password_2  =  e($_POST['password_2']);
 
-	// form validation: ensure that the form is correctly filled
+	// validacion de formulario
 	if (empty($username)) { 
 		array_push($errors, "Se requiere un usuario"); 
 	}
@@ -40,9 +40,9 @@ function register(){
 		array_push($errors, "Las contrasenas no coinciden");
 	}
 
-	// register user if there are no errors in the form
+	// registrar usuario si no hay errores en el llenado
 	if (count($errors) == 0) {
-		$password = md5($password_1);//encrypt the password before saving in the database
+		$password = md5($password_1);//encripta la contrasena antes de insertarla en la DB
 
 		if (isset($_POST['user_type'])) {
 			$user_type = e($_POST['user_type']);
@@ -56,17 +56,17 @@ function register(){
 					  VALUES('$username', '$email', 'user', '$password')";
 			mysqli_query($db, $query);
 
-			// get id of the created user
+			// toma la id del usuario creado
 			$logged_in_user_id = mysqli_insert_id($db);
 
-			$_SESSION['user'] = getUserById($logged_in_user_id); // put logged in user in session
+			$_SESSION['user'] = getUserById($logged_in_user_id); // poner a usuario logeado en sesion
 			$_SESSION['success']  = "Has iniciado sesion.";
 			header('location: index.php');				
 		}
 	}
 }
 
-// return user array from their id
+// retornar array de usuario desde su id
 function getUserById($id){
 	global $db;
 	$query = "SELECT * FROM users WHERE id=" . $id;
@@ -76,7 +76,7 @@ function getUserById($id){
 	return $user;
 }
 
-// escape string
+// string de escape
 function e($val){
 	global $db;
 	return mysqli_real_escape_string($db, trim($val));
@@ -103,27 +103,27 @@ function isLoggedIn()
 	}
 }
 
-// log user out if logout button clicked
+// deslogear usuario si cerrar sesion es clickeado
 if (isset($_GET['logout'])) {
 	session_destroy();
 	unset($_SESSION['user']);
 	header("location: login.php");
 }
 
-// call the login() function if register_btn is clicked
+// llamar la funcion login() si register_btn es clickeado
 if (isset($_POST['login_btn'])) {
 	login();
 }
 
-// LOGIN USER
+// LOGEAR USUARIO
 function login(){
 	global $db, $username, $errors;
 
-	// grap form values
+	// valores de forma grap
 	$username = e($_POST['username']);
 	$password = e($_POST['password']);
 
-	// make sure form is filled properly
+	// cerciorarse que el formulario se llene correctamente
 	if (empty($username)) {
 		array_push($errors, "Username is required");
 	}
@@ -131,15 +131,15 @@ function login(){
 		array_push($errors, "Password is required");
 	}
 
-	// attempt login if no errors on form
+	// intentar login si no hay errores en formulario
 	if (count($errors) == 0) {
 		$password = md5($password);
 
 		$query = "SELECT * FROM users WHERE username='$username' AND password='$password' LIMIT 1";
 		$results = mysqli_query($db, $query);
 
-		if (mysqli_num_rows($results) == 1) { // user found
-			// check if user is admin or user
+		if (mysqli_num_rows($results) == 1) { // usuario encontrado
+			// comprobacion si tipo de usuario es usuario o admin
 			$logged_in_user = mysqli_fetch_assoc($results);
 			if ($logged_in_user['user_type'] == 'admin') {
 
