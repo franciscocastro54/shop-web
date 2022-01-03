@@ -50,7 +50,7 @@ function register(){
 					  VALUES('$username', '$email', '$user_type', '$password')";
 			mysqli_query($db, $query);
 			$_SESSION['success']  = "Usuario nuevo creado exitosamente!!";
-			header('location: home.php');
+			header('location: /Grupo1_TFinal/public_html/');
 		}else{
 			$query = "INSERT INTO users (username, email, user_type, password) 
 					  VALUES('$username', '$email', 'user', '$password')";
@@ -61,7 +61,7 @@ function register(){
 
 			$_SESSION['user'] = getUserById($logged_in_user_id); // poner a usuario logeado en sesion
 			$_SESSION['success']  = "Has iniciado sesion.";
-			header('location: index.php');				
+			header('location: /Grupo1_TFinal/public_html/');			
 		}
 	}
 }
@@ -284,7 +284,7 @@ function DeleteClient()
 	$query = "DELETE FROM `users` WHERE id=$idClient";
 	if (mysqli_query($db, $query)) {
 		unset($_SESSION['client']);
-		header('location: /modClients/List.php');
+		header('location: /Grupo1_TFinal/php/modClients/List.php');
 	}
 }
 function reloadProduct()
@@ -352,7 +352,7 @@ function CreateProduct()
 		if (mysqli_query($db, $query)) {
 			$_SESSION['product'] = getProductById(mysqli_insert_id($db)); // put logged in user in session
 			$_SESSION['success']  = "Producto creado exitosamente!!";
-			header('location: /modProduct/List.php');
+			header('location: /Grupo1_TFinal/php/modProduct/List.php');
 		}
 	}
 }
@@ -412,6 +412,60 @@ function DeleteProduct()
 	$query = "DELETE FROM `products` WHERE productId =$idProduct";
 	if (mysqli_query($db, $query)) {
 		unset($_SESSION['product']);
-		header('location: /modProduct/List.php');
+		header('location: /Grupo1_TFinal/php/modProduct/List.php');
+	}
+}
+if (isset($_POST['createUser_btn'])) {
+	createUser();
+}
+
+// REGISTRAR USUARIO
+function createUser(){
+	// llamar a estas variables con la palabra clave global para que estén disponibles en función
+	global $db, $errors, $username, $email;
+
+	// recibe todos los valores de entrada del formulario. Llamar a la función e ()
+    // definida a continuación para escapar de los valores del formulario
+	$username    =  e($_POST['username']);
+	$email       =  e($_POST['email']);
+	$password_1  =  e($_POST['password_1']);
+	$password_2  =  e($_POST['password_2']);
+
+	// validacion de formulario
+	if (empty($username)) { 
+		array_push($errors, "Se requiere un usuario"); 
+	}
+	if (empty($email)) { 
+		array_push($errors, "Se requiere un correo"); 
+	}
+	if (empty($password_1)) { 
+		array_push($errors, "Se requiere una contrasena"); 
+	}
+	if ($password_1 != $password_2) {
+		array_push($errors, "Las contrasenas no coinciden");
+	}
+
+	// registrar usuario si no hay errores en el llenado
+	if (count($errors) == 0) {
+		$password = md5($password_1);//encripta la contrasena antes de insertarla en la DB
+
+		if (isset($_POST['user_type'])) {
+			$user_type = e($_POST['user_type']);
+			$query = "INSERT INTO users (username, email, user_type, password) 
+					  VALUES('$username', '$email', '$user_type', '$password')";
+			mysqli_query($db, $query);
+			$_SESSION['success']  = "Usuario nuevo creado exitosamente!!";
+			header('location: /Grupo1_TFinal/php/modClients/List.php');	
+		}else{
+			$query = "INSERT INTO users (username, email, user_type, password) 
+					  VALUES('$username', '$email', 'user', '$password')";
+			mysqli_query($db, $query);
+
+			// toma la id del usuario creado
+			$logged_in_user_id = mysqli_insert_id($db);
+
+		$_SESSION['success']  = "Usuario Creado";
+			header('location: /Grupo1_TFinal/php/modClients/List.php');				
+		}
 	}
 }

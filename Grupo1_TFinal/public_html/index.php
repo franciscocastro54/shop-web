@@ -66,7 +66,7 @@
                             <li class="option">
                             <a  href="../php/modProduct/List.php">Editar Productos</a>
                         </li><li class="option">
-                            <a >Administrar Clientes</a>
+                            <a href="../php/modClients/List.php">Administrar Clientes</a>
                         </li>
                             <?php } ?>
                         <li class="option">

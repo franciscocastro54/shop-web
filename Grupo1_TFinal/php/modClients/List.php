@@ -7,26 +7,22 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../../public_html/style.css">
+    <link rel="stylesheet" href="../../public_html/style.css">
     <title>Bienvenidos | webPage</title>
 </head>
 <body><?php
 	include('../functions.php');
-    if (isLoggedIn()) {
-        $_SESSION['product']=getProductById($_GET["id"]);
+    if (isLoggedIn()&&isAdmin()) {
         ?>
-    <header class="header">
-        
-        
+    <header>      
     </header>
-    <nav class="nav">
-          
-          </nav>
-
+    <nav >
+        </nav>
+<section>
     <article class="container-contact">
 
    
-        <h2>Modificar Producto</h2>
+        <h2>Lista de clientes</h2>
         <?php
     display_error();
     if (isset($_SESSION['success'])) : ?>
@@ -39,40 +35,49 @@
 				</h3>
 			</div>
 		<?php endif ?>
+        <a href="./createUser.php"><button class="submit-button">Ingresar Nuevo Producto</button></a>
         
-        <form class="form" method="post" > 
-            <p>confirmar datos</p>
-            <div class="input-container">
-                <p>Nombre</p>
-                <input type="text" name="title" value="<?php echo $_SESSION['product']['title']; ?>"> 
-            </div> 
+        <div class="form">
+       <table>
+      <thead>
+          <tr>
+<th>Usuario</th><th>Correo</th><th>Rol</th>
+          </tr>
+      </thead>
+      <tbody>
+  
+			
+					<?php 
+                   $List= reloadClient();
+                   foreach ( $List as $Client){
+                       $idUser=$Client["id"];
+                    $user=$Client["username"];
+                    $email=$Client["email"];
+                    $rol=$Client["user_type"];
+                    echo "<tr>
+                    <td><a href='modClient.php/?id=$idUser'>$user</a></td>
+                    <td>$email</td>
+                    <td>$rol</td>
+                    </tr>"; 
+                   }
+						
+					
+					?>
+				
+			</div>
+		
+      </tbody>
+    </table>
 
-            <div class="input-container">
-                <p>Precio</p>
-                <input type="number" name="price" value="<?php echo $_SESSION['product']['price']; ?>"> 
-            </div> 
-            <div class="input-container">
-                <p>Unidad</p>
-                <input type="text" name="unidad" value="<?php echo $_SESSION['product']['unidad']; ?>"> 
-            </div> 
-            <div class="input-container">
-                <p>Descuento(%)</p>
-                <input type="number" name="dcto" value="<?php echo $_SESSION['product']['dcto']; ?>"> 
-            </div>
-            <div class="input-container">
-                <p>imagen (URL)</p>
-                <input type="text" name="imgUrl" value="<?php echo $_SESSION['product']['imgUrl']; ?>"> 
-            </div>
 
-            <button  class="submit-button"   type="submit" name="modProduct_btn"> Modificar </button>
-            <button  class="submit-button"   type="submit" name="delProduct_btn"> Eliminar </button>
-        </form>
+
+    </div>
 
 
 
 
     </article>
-
+                </section>
     <footer class="footer">
         
         <div class="footer-section">

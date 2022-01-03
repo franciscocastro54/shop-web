@@ -7,26 +7,26 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../../public_html/style.css">
+    <link rel="stylesheet" href="../../public_html/style.css">
     <title>Bienvenidos | webPage</title>
 </head>
 <body><?php
 	include('../functions.php');
     if (isLoggedIn()) {
-        $_SESSION['product']=getProductById($_GET["id"]);
         ?>
-    <header class="header">
+    <header >
         
-        
+    
+ 
     </header>
-    <nav class="nav">
-          
-          </nav>
+    <nav >
+        
+        </nav>
 
     <article class="container-contact">
 
    
-        <h2>Modificar Producto</h2>
+        <h2>Creacion Cliente</h2>
         <?php
     display_error();
     if (isset($_SESSION['success'])) : ?>
@@ -41,32 +41,36 @@
 		<?php endif ?>
         
         <form class="form" method="post" > 
-            <p>confirmar datos</p>
+            <p>confirma tus datos</p>
             <div class="input-container">
-                <p>Nombre</p>
-                <input type="text" name="title" value="<?php echo $_SESSION['product']['title']; ?>"> 
+                <p>Usuario</p>
+                <input type="text" name="username"> 
             </div> 
 
             <div class="input-container">
-                <p>Precio</p>
-                <input type="number" name="price" value="<?php echo $_SESSION['product']['price']; ?>"> 
+                <p>Correo</p>
+                <input type="email" name="email" > 
             </div> 
             <div class="input-container">
-                <p>Unidad</p>
-                <input type="text" name="unidad" value="<?php echo $_SESSION['product']['unidad']; ?>"> 
+                <p>Rol</p>
+               
+                <select id="rolClient" name="type" >
+                    <option value="user">Usuario</option>
+                    <option value="admin">Administrador</option>
+                </select>
+  
             </div> 
             <div class="input-container">
-                <p>Descuento(%)</p>
-                <input type="number" name="dcto" value="<?php echo $_SESSION['product']['dcto']; ?>"> 
+                <p>Contraseña</p>
+                <input type="password" name="password_1">
             </div>
             <div class="input-container">
-                <p>imagen (URL)</p>
-                <input type="text" name="imgUrl" value="<?php echo $_SESSION['product']['imgUrl']; ?>"> 
+                <p>Confirmar contraseña</p>
+                <input type="password"  name="password_2">
             </div>
 
-            <button  class="submit-button"   type="submit" name="modProduct_btn"> Modificar </button>
-            <button  class="submit-button"   type="submit" name="delProduct_btn"> Eliminar </button>
-        </form>
+            <button  class="submit-button"   type="submit" name="createUser_btn"> Registrar </button>
+       </form>
 
 
 
