@@ -1,16 +1,44 @@
-
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
-<?php
-                include('../php/functions.php');
-                
-                ?>
+    <?php
+    include('../php/functions.php');
+
+    ?>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        <?php
+        $List = reloadProduct();
+        echo  "const products = [";
+        foreach ($List as $product) {
+            $idProduct = $product["productId"];
+            $name = $product["title"];
+            $price = $product["price"];
+            $unit = $product["unidad"];
+            $dcto = $product["dcto"];
+            $imgUrl = $product["imgUrl"];
+            echo "
+                               
+                                    {
+                                      productId: '$idProduct',
+                                      title: '$name',
+                                      price: '$price',
+                                      unidad: '$unit',
+                                      dcto: '$dcto',
+                                      imgUrl: '$imgUrl',
+                                    },
+                                
+                                
+                                ";
+        }
+
+        echo "  ];";
+        ?>
+    </script>
     <script src="../js/main.js"></script>
     <link rel="stylesheet" href="style.css">
     <title>Verduleria a tu casa</title>
@@ -20,78 +48,79 @@
 
     <header class="header">
         <div class="header-links">
-        <?php
-    display_error();
-    if (isset($_SESSION['success'])) : ?>
-			<div class="error success" >
-				<h3>
-					<?php 
-						echo $_SESSION['success']; 
-						unset($_SESSION['success']);
-					?>
-				</h3>
-			</div>
-		<?php endif ?>
+            <?php
+            display_error();
+            if (isset($_SESSION['success'])) : ?>
+                <div class="error success">
+                    <h3>
+                        <?php
+                        echo $_SESSION['success'];
+                        unset($_SESSION['success']);
+                        ?>
+                    </h3>
+                </div>
+            <?php endif ?>
 
         </div>
     </header>
     <nav class="nav">
-            <a class="page-logo-container" href="./"><img class="page-logo" src="./img/verduleriaLogo.jpg"></a>
-            <ul class="menu">
-                <li>
-                    <a class="left-nav" id="productos">Productos</a>
-                </li>
+        <a class="page-logo-container" href="./"><img class="page-logo" src="./img/verduleriaLogo.jpg"></a>
+        <ul class="menu">
+            <li>
+                <a class="left-nav" id="productos">Productos</a>
+            </li>
 
 
-                <li>
-                    <a class="left-nav" id="quienesSomos">Quiénes somos</a>
+            <li>
+                <a class="left-nav" id="quienesSomos">Quiénes somos</a>
 
-                </li>
-                <li>
-                    <a class="left-nav" id="faq">FAQ</a>
-                </li>
-
-             
-
+            </li>
+            <li>
+                <a class="left-nav" id="faq">FAQ</a>
+            </li>
 
 
 
-                <?php
-            
-                if (isLoggedIn()) { ?>
-<li class="left-nav">
-                    <a class="left-nav" >Perfil</a>
+
+
+
+            <?php
+
+            if (isLoggedIn()) { ?>
+                <li class="left-nav">
+                    <a class="left-nav">Perfil</a>
                     <ul class="submenu-1">
-                        <?php if(isAdmin()){?>
+                        <?php if (isAdmin()) { ?>
                             <li class="option">
-                            <a  href="../php/modProduct/List.php">Editar Productos</a>
-                        </li><li class="option">
-                            <a href="../php/modClients/List.php">Administrar Clientes</a>
-                        </li>
-                            <?php } ?>
+                                <a href="../php/modProduct/List.php">Editar Productos</a>
+                            </li>
+                            <li class="option">
+                                <a href="../php/modClients/List.php">Administrar Clientes</a>
+                            </li>
+                        <?php } ?>
                         <li class="option">
                             <a href="../php/modUser/modUser.php">Modificar Perfil</a>
                         </li>
                         <li class="option">
-                        <a href="?logout='1'">Cerrar Session</a>
+                            <a href="?logout='1'">Cerrar Session</a>
                         </li>
-                      
+
                     </ul>
                 </li>
-                   
-                    </li>
-                <?php } else { ?>
-                    <li class="login">
-                        <a class="right-nav" id="login">Ingresa</a>
-                    </li>
 
-                <?php } ?>
+                </li>
+            <?php } else { ?>
+                <li class="login">
+                    <a class="right-nav" id="login">Ingresa</a>
+                </li>
 
-            </ul>
-        </nav>
-        <section>
-    <article id="content" class="content"></article>
-                </section>
+            <?php } ?>
+
+        </ul>
+    </nav>
+    <section>
+        <article id="content" class="content"></article>
+    </section>
     <footer class="footer">
 
         <div class="footer-section">
