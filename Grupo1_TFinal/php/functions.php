@@ -105,9 +105,10 @@ function isLoggedIn()
 
 // deslogear usuario si cerrar sesion es clickeado
 if (isset($_GET['logout'])) {
+	//unset($_GET);
 	session_destroy();
 	unset($_SESSION['user']);
-	header("location: login.php");
+	header('location: /Grupo1_TFinal/public_html/');
 }
 
 // llamar la funcion login() si register_btn es clickeado
@@ -145,12 +146,12 @@ function login(){
 
 				$_SESSION['user'] = $logged_in_user;
 				$_SESSION['success']  = "Has iniciado sesion.";
-				header('location: admin/home.php');		  
+			 
 			}else{
 				$_SESSION['user'] = $logged_in_user;
 				$_SESSION['success']  = "Has iniciado sesion.";
 
-				header('location: index.php');
+				
 			}
 		}else {
 			array_push($errors, "Usuario o contrasena no coinciden.");
@@ -169,3 +170,248 @@ function isAdmin(){
 
 	
 
+if (isset($_POST['modUser_btn'])) {
+	ModifyUser();
+}
+function ModifyUser()
+{
+	// call these variables with the global keyword to make them available in function
+	global $db, $errors, $username, $email;
+
+	// receive all input values from the form. Call the e() function
+	// defined below to escape form values
+	$username    =  e($_POST['username']);
+	$email       =  e($_POST['email']);
+	$password_1  =  e($_POST['password_1']);
+	$password_2  =  e($_POST['password_2']);
+
+	// form validation: ensure that the form is correctly filled
+	if (empty($username)) {
+		array_push($errors, "Se requiere un usuario");
+	}
+	if (empty($email)) {
+		array_push($errors, "Se requiere un correo");
+	}
+	if (empty($password_1)) {
+		array_push($errors, "Se requiere una contrasena");
+	}
+	if ($password_1 != $password_2) {
+		array_push($errors, "Las contrasenas no coinciden");
+	}
+
+	// register user if there are no errors in the form
+	if (count($errors) == 0) {
+		$password = md5($password_1); //encrypt the password before saving in the database
+
+
+
+		$idUser = $_SESSION['user']['id'];
+		$typeUser = $_SESSION['user']['user_type'];
+		$query = "UPDATE `users` SET `username`='$username',`email`='$email',`user_type`='$typeUser',`password`='$password' WHERE `id`=$idUser";
+		if (mysqli_query($db, $query)) {
+			$_SESSION['user'] = getUserById($idUser); // put logged in user in session
+			$_SESSION['success']  = "Usuario Modificado exitosamente!!";
+		}
+	}
+}
+
+
+function reloadClient()
+{
+	global $db;
+	$query = "SELECT * FROM users ;";
+	$results = mysqli_query($db, $query);
+	if ($results) {
+		$List = [];
+		while ($row = mysqli_fetch_array($results)) {
+
+			array_push($List, $row);
+		}
+		return $List;
+	}
+}
+if (isset($_POST['modClient_btn'])) {
+	ModifyClient();
+}
+function ModifyClient()
+{
+	// call these variables with the global keyword to make them available in function
+	global $db, $errors, $username, $email;
+
+	// receive all input values from the form. Call the e() function
+	// defined below to escape form values
+	$username    =  e($_POST['username']);
+	$email       =  e($_POST['email']);
+	$typeUser      =  e($_POST['type']);
+	$password_1  =  e($_POST['password_1']);
+	$password_2  =  e($_POST['password_2']);
+
+	// form validation: ensure that the form is correctly filled
+	if (empty($username)) {
+		array_push($errors, "Se requiere un usuario");
+	}
+	if (empty($email)) {
+		array_push($errors, "Se requiere un correo");
+	}
+	if (empty($password_1)) {
+		array_push($errors, "Se requiere una contrasena");
+	}
+	if ($password_1 != $password_2) {
+		array_push($errors, "Las contrasenas no coinciden");
+	}
+
+	// register user if there are no errors in the form
+	if (count($errors) == 0) {
+		$password = md5($password_1); //encrypt the password before saving in the database
+
+
+
+		$idUser = $_SESSION['client']['id'];
+		$query = "UPDATE `users` SET `username`='$username',`email`='$email',`user_type`='$typeUser',`password`='$password' WHERE `id`=$idUser";
+		if (mysqli_query($db, $query)) {
+			$_SESSION['client'] = getUserById($idUser); // put logged in user in session
+			$_SESSION['success']  = "Cliente Modificado exitosamente!!";
+		}
+	}
+}
+if (isset($_POST['delClient_btn'])) {
+	DeleteClient();
+}
+function DeleteClient()
+{
+	global $db;
+	$idClient = $_SESSION['client']["id"];
+	$query = "DELETE FROM `users` WHERE id=$idClient";
+	if (mysqli_query($db, $query)) {
+		unset($_SESSION['client']);
+		header('location: /modClients/List.php');
+	}
+}
+function reloadProduct()
+{
+	global $db;
+	$query = "SELECT * FROM products ;";
+	$results = mysqli_query($db, $query);
+	if ($results) {
+		$List = [];
+		while ($row = mysqli_fetch_array($results)) {
+
+			array_push($List, $row);
+		}
+		return $List;
+	}
+}
+function getProductById($id)
+{
+	global $db;
+	$query = "SELECT * FROM products WHERE productId =" . $id;
+	$result = mysqli_query($db, $query);
+
+	$product = mysqli_fetch_assoc($result);
+	return $product;
+}
+if (isset($_POST['registerProduct_btn'])) {
+	CreateProduct();
+}
+function CreateProduct()
+{
+	// call these variables with the global keyword to make them available in function
+	global $db, $errors;
+
+	// receive all input values from the form. Call the e() function
+	// defined below to escape form values
+                            $name = e($_POST['title']);
+                            $price = e($_POST['price']);
+                            $unit = e($_POST['unidad']);
+                            $dcto =e($_POST['dcto']);
+                            $imgUrl = e($_POST['imgUrl']);
+
+
+	// form validation: ensure that the form is correctly filled
+	if (empty($name)) {
+		array_push($errors, "Se requiere un nombre");
+	}
+	if (empty($price)) {
+		array_push($errors, "Se requiere un precio");
+	}
+	if (empty($unit)) {
+		array_push($errors, "Se requiere una unidad");
+	}
+	if (empty($dcto)) {
+		array_push($errors, "Se requiere un descuento");
+	}
+	if (empty($imgUrl)) {
+		array_push($errors, "Se requiere una imagen(URL)");
+	}
+
+	// register user if there are no errors in the form
+	if (count($errors) == 0) {
+	
+		$query = "INSERT INTO `products`(`title`, `price`, `unidad`, `dcto`, `imgUrl`) 
+		VALUES ('$name','$price','$unit','$dcto','$imgUrl')";
+		if (mysqli_query($db, $query)) {
+			$_SESSION['product'] = getProductById(mysqli_insert_id($db)); // put logged in user in session
+			$_SESSION['success']  = "Producto creado exitosamente!!";
+			header('location: /modProduct/List.php');
+		}
+	}
+}
+if (isset($_POST['modProduct_btn'])) {
+	ModifyProduct();
+}
+function ModifyProduct()
+{
+	// call these variables with the global keyword to make them available in function
+	global $db, $errors;
+
+	// receive all input values from the form. Call the e() function
+	// defined below to escape form values
+	$idProduct = $_SESSION["product"]["productId"];
+                            $name = e($_POST['title']);
+                            $price = e($_POST['price']);
+                            $unit = e($_POST['unidad']);
+                            $dcto =e($_POST['dcto']);
+                            $imgUrl = e($_POST['imgUrl']);
+
+
+	// form validation: ensure that the form is correctly filled
+	if (empty($name)) {
+		array_push($errors, "Se requiere un nombre");
+	}
+	if (empty($price)) {
+		array_push($errors, "Se requiere un precio");
+	}
+	if (empty($unit)) {
+		array_push($errors, "Se requiere una unidad");
+	}
+	if (empty($dcto)) {
+		array_push($errors, "Se requiere un descuento");
+	}
+	if (empty($imgUrl)) {
+		array_push($errors, "Se requiere una imagen(URL)");
+	}
+
+	// register user if there are no errors in the form
+	if (count($errors) == 0) {
+	
+		$query = "UPDATE `products` SET `title`='$name',`price`='$price',`unidad`='$unit',`dcto`='$dcto',`imgUrl`='$imgUrl' WHERE `productId`=$idProduct";
+		if (mysqli_query($db, $query)) {
+			$_SESSION['product'] = getProductById($idProduct); // put logged in user in session
+			$_SESSION['success']  = "Producto Modificado exitosamente!!";
+		}
+	}
+}
+
+if (isset($_POST['delProduct_btn'])) {
+	DeleteProduct();
+}
+function DeleteProduct()
+{
+	global $db;
+	$idProduct = $_SESSION['product']["productId"];
+	$query = "DELETE FROM `products` WHERE productId =$idProduct";
+	if (mysqli_query($db, $query)) {
+		unset($_SESSION['product']);
+		header('location: /modProduct/List.php');
+	}
+}

@@ -196,12 +196,12 @@ $(document).ready(function () {
   $("#login").click(function () {
     let loginTemplate = `
       <h2>Ingresar</h2>
-        <form method="post" action="../connection/login.php" class="form">
+        <form method="post"  class="form">
             <p>Ingresa tus datos</p>
             
             <div class="input-container">
                 <p>Usuario</p>
-                <input name="userName" type="user_name" >
+                <input name="username" type="user_name" >
             </div>        
 
             <div class="input-container">
@@ -209,7 +209,7 @@ $(document).ready(function () {
                 <input name="password" type="password" >
             </div>
 
-            <button id="submit" type="submit" name="submit" value="submit" class="submit-button"> Ingresar </button>
+            <button id="submit" type="submit" name="login_btn" value="submit" class="submit-button"> Ingresar </button>
 
             <a id="signUp" class="signup"> Registrarse </a>
 
@@ -221,12 +221,44 @@ $(document).ready(function () {
     $("#signUp").click(function () {
       let signTemplate = `
         <h2>Registrarse</h2>
-        <form method="post" action="../connection/signUp.php" class="form">
+        <form method="post" class="form">
+ 
+	<div class="input-container">
+		<p>Usuario</p>
+		<input type="text" name="username">
+	</div>
+	<div class="input-container">
+		<p>Correo</p>
+		<input type="email" name="email">
+	</div>
+	<div class="input-container">
+		<p>Contraseña</p>
+		<input type="password" name="password_1">
+	</div>
+	<div class="input-container">
+		<p>Confirmar contraseña</p>
+		<input type="password" name="password_2">
+	</div>
+	<div class="input-container">
+		<button type="submit" class="submit-button" name="register_btn">Registrarse</button>
+	</div>
+
+        `;
+      content.empty();
+      content.removeClass("content").addClass("container-contact");
+      content.append(signTemplate);
+    });
+  });
+function reloadLogin(){
+  $("#login").click(function () {
+    let loginTemplate = `
+      <h2>Ingresar</h2>
+        <form method="post"  class="form">
             <p>Ingresa tus datos</p>
             
             <div class="input-container">
-                <p>nombre de usuario</p>
-                <input name="userName" type="user_name" >
+                <p>Usuario</p>
+                <input name="username" type="user_name" >
             </div>        
 
             <div class="input-container">
@@ -234,9 +266,43 @@ $(document).ready(function () {
                 <input name="password" type="password" >
             </div>
 
-            <button id="submit" type="submit" name="submit" value="submit" class="submit-button"> Ingresar </button>
+            <button id="submit" type="submit" name="login_btn" value="submit" class="submit-button"> Ingresar </button>
+
+            <a id="signUp" class="signup"> Registrarse </a>
 
         </form>
+      `;
+    content.empty();
+    content.removeClass("content").addClass("container-contact");
+    content.append(loginTemplate);
+    $("#signUp").click(function () {
+      let signTemplate = `
+        <h2>Registrarse</h2>
+        <form method="post" class="form">
+ 
+	<div class="input-container">
+		<p>Usuario</p>
+		<input type="text" name="username">
+	</div>
+	<div class="input-container">
+		<p>Correo</p>
+		<input type="email" name="email">
+	</div>
+	<div class="input-container">
+		<p>Contraseña</p>
+		<input type="password" name="password_1">
+	</div>
+	<div class="input-container">
+		<p>Confirmar contraseña</p>
+		<input type="password" name="password_2">
+	</div>
+	<div class="input-container">
+		<button type="submit" class="submit-button" name="register_btn">Registrarse</button>
+	</div>
+	<p>
+		Ya tienes cuenta? <a id="login">Inicia sesion</a>
+	</p>
+</form>
         `;
       content.empty();
       content.removeClass("content").addClass("container-contact");
@@ -244,6 +310,7 @@ $(document).ready(function () {
     });
   });
 
+}
   $("#registrarse").click(function () {});
 
   $("#miCuenta").click(function () {});

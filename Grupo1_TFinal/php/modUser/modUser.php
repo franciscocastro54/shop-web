@@ -1,67 +1,92 @@
-<!DOCTYPE html>
+
+
+
+     <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="../js/main.js"></script>
-    <link rel="stylesheet" href="style.css">
-    <title>Verduleria a tu casa</title>
+    <link rel="stylesheet" href="../../public_html/style.css">
+    <script ref="../../js/main.js"></script>
+    <title>Bienvenidos | webPage</title>
 </head>
-<body>
+<body><?php
+	include('../functions.php');
+    if (isLoggedIn()) {
+        ?>
+    
     <header class="header">
-        
-                <nav class="nav">
-            <a class="page-logo-container" href="./index.html"><img class="page-logo" src="./img/verduleriaLogo.jpg"></a>
-            <ul class="menu">
-                <li>
-                    <a class="left-nav" href="./index.html">Productos</a>
-                </li>                              
-                
-                
-                <li >
-                    <a class="left-nav" href="./quienessomos.html">Quiénes somos</a>
-                    
-                </li>
-                <li>
-                    <a class="left-nav" href="./faq.html">FAQ</a>
-                </li>
-
-                <li class="login">
-                    <a class="right-nav" href="./login.html">Ingresa o registrate</a>
-                </li>
-                
-                <li>
-                    <a class="left-nav" href="./micuenta.html">Mi Cuenta
-            </ul>
-        </nav>
-   <div class="header-links">
-            <a href="./quienessomos.html">Quienes somos</a>
+        <div class="header-links">
+        <?php
+    display_error();
+    if (isset($_SESSION['success'])) : ?>
+			<div class="error success" >
+				<h3>
+					<?php 
+						echo $_SESSION['success']; 
+						unset($_SESSION['success']);
+					?>
+				</h3>
+			</div>
+		<?php endif ?>
 
         </div>
     </header>
-    
+   
+     
+    </header>
+    <nav>
+         
+         </nav>
+    <section>
     <article class="container-contact">
-        <h2>Preguntas frecuentes</h2>
 
-        <div class="info-container">
-            <p>Como funciona?</p>
-            <p>En productos añade los productos que quiera al carro, para luego pasar por carro, iniciar sesion si no lo ha hecho aun, paga, y listo!</p>
-        </div>
-
-        <div class="info-container">
-            <p>Cuanto tardan y cuestan los envios?</p>
-            <p>Llegan al dia siguiente a la fecha de la orden. El precio varia segun localidad de la Region.</p>
-        </div>
-
+   
+        <h2>Modificar información</h2>
+        <?php
+    display_error();
+    if (isset($_SESSION['success'])) : ?>
+			<div class="error success" >
+				<h3>
+					<?php 
+						echo $_SESSION['success']; 
+						unset($_SESSION['success']);
+					?>
+				</h3>
+			</div>
+		<?php endif ?>
         
+        <form class="form" method="post" > 
+            <p>confirma tus datos</p>
+            <div class="input-container">
+                <p>Usuario</p>
+                <input type="text" name="username" value="<?php echo $_SESSION['user']['username']; ?>"> 
+            </div> 
+
+            <div class="input-container">
+                <p>Correo</p>
+                <input type="email" name="email" value="<?php echo $_SESSION['user']['email']; ?>"> 
+            </div> 
+
+            <div class="input-container">
+                <p>Contraseña</p>
+                <input type="password" name="password_1">
+            </div>
+            <div class="input-container">
+                <p>Confirmar contraseña</p>
+                <input type="password"  name="password_2">
+            </div>
+
+            <button  class="submit-button"   type="submit" name="modUser_btn"> Modificar </button>
+
+        </form>
 
 
 
 
     </article>
-    
+    </section>
     <footer class="footer">
         
         <div class="footer-section">
@@ -94,7 +119,7 @@
         </div>
 
         <div class="footer-section">
-                <a href=".index.html" class="titulo" >Sucursales</a>
+                <a href="./sucursales.html" class="titulo" >Sucursales</a>
                 <ul id="sucursales">
                     <li><a href="./index.html" id="sucursalNorte">Sucursal Norte</a></li>
                     <li><a href="./index.html" id="sucursalSur">Sucursal Sur</a></li>
@@ -104,5 +129,8 @@
         
 
     </footer>
+    <?php    
+}
+?>
 </body>
 </html>
