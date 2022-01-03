@@ -119,16 +119,16 @@ if (isset($_POST['login_btn'])) {
 function login(){
 	global $db, $username, $errors;
 
-	// valores de forma grap
+	// valores de formulario grap
 	$username = e($_POST['username']);
 	$password = e($_POST['password']);
 
 	// cerciorarse que el formulario se llene correctamente
 	if (empty($username)) {
-		array_push($errors, "Username is required");
+		array_push($errors, "Se requiere usuario");
 	}
 	if (empty($password)) {
-		array_push($errors, "Password is required");
+		array_push($errors, "Se requiere contrasena");
 	}
 
 	// intentar login si no hay errores en formulario

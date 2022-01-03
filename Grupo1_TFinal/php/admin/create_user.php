@@ -6,10 +6,10 @@
 	<link rel="stylesheet" type="text/css" href="../style1.css">
 	<style>
 		.header {
-			background: #003366;
+			background: rgb(133, 89, 42);
 		}
 		button[name=register_btn] {
-			background: #003366;
+			background: rgb(133, 89, 42);
 		}
 	</style>
 </head>
