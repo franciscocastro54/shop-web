@@ -46,24 +46,12 @@
 
 <body>
 
-    <header class="header">
-        <div class="header-links">
-            <?php
-            display_error();
-            if (isset($_SESSION['success'])) : ?>
-                <div class="error success">
-                    <h3>
-                        <?php
-                        echo $_SESSION['success'];
-                        unset($_SESSION['success']);
-                        ?>
-                    </h3>
-                </div>
-            <?php endif ?>
-
-        </div>
+    <header >
+        
     </header>
-    <nav class="nav">
+    
+    <nav class="header">
+        <div class="nav">
         <a class="page-logo-container" href="./"><img class="page-logo" src="./img/verduleriaLogo.jpg"></a>
         <ul class="menu">
             <li>
@@ -117,6 +105,23 @@
             <?php } ?>
 
         </ul>
+        </div>
+
+        <div class="header-links">
+            <?php
+            display_error();
+            if (isset($_SESSION['success'])) : ?>
+                <div class="error success">
+                    <h3>
+                        <?php
+                        echo $_SESSION['success'];
+                        unset($_SESSION['success']);
+                        ?>
+                    </h3>
+                </div>
+            <?php endif ?>
+
+        </div>
     </nav>
     <section>
         <article id="content" class="content"></article>
